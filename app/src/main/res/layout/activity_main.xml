@@ -22,15 +22,17 @@
 
 
             <TextView
+                android:id="@+id/nombre_principal_seteado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ricardo"
+                android:text="Cargando..."
                 android:textSize="24dp"
                 android:layout_gravity="center"
                 android:textColor="@color/black"
                 />
 
             <TextView
+                android:id="@+id/email_principal_seteado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ricardo@gmail.com"

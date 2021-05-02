@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -24,6 +25,7 @@ import java.util.Set;
 import java.util.stream.IntStream;
 
 public class BuscarNumeroActivity extends AppCompatActivity {
+    private SharedPreferences prefs = null;
 
     private int numeroAleatorioPrincipal;
     private int valorSeleccionado;
@@ -50,12 +52,18 @@ public class BuscarNumeroActivity extends AppCompatActivity {
     private RelativeLayout mQuintoR;
 
 
+
+    private List<Boolean> listaCalificacion = new ArrayList<>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar_numero);
 
         iniciarNuevamente();
+        prefs = getSharedPreferences("com.valdemar.appcognitivo", MODE_PRIVATE);
+
     }
 
     private void iniciarNuevamente() {
@@ -174,22 +182,27 @@ public class BuscarNumeroActivity extends AppCompatActivity {
                     if(valorSeleccionado == numeroAleatorioPrincipal){
                         //Toast.makeText(BuscarNumeroActivity.this,"Seleccionó "+valorSeleccionado,Toast.LENGTH_SHORT).show();
                         showSnackBar("¡Muy bien!");
-                        contador = findViewById(R.id.contador);
-                        int contador_ = Integer.parseInt(contador.getText().toString());
 
-                        iniciarNuevamente();
-                        int contador2 = contador_+1;
-                        if(contador2 == 10){
-                            startActivity(new Intent(BuscarNumeroActivity.this, ResultadoFinal.class));
-                        }
-                        contador.setText(contador2+ "");
-
-
-
+                        listaCalificacion.add(true);
                     }else{
                         //Toast.makeText(BuscarNumeroActivity.this,"Incorrecto "+valorSeleccionado,Toast.LENGTH_SHORT).show();
                         showSnackBar("¡Oh no fallaste!");
+                        listaCalificacion.add(false);
+
                     }
+
+                    contador = findViewById(R.id.contador);
+                    int contador_ = Integer.parseInt(contador.getText().toString());
+
+                    iniciarNuevamente();
+                    int contador2 = contador_+1;
+                    if(contador2 > 10){
+                        prefs.edit().putString("prefs_puntaje", listaCalificacion.toString()).commit();
+                        showSnackBar(listaCalificacion.toString());
+                         startActivity(new Intent(BuscarNumeroActivity.this, ResultadoFinal.class));
+                         finish();
+                    }
+                    contador.setText(contador2+ "");
                 }
             }
         });
