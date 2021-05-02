@@ -13,6 +13,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -49,9 +51,12 @@ public class BuscarNumeroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar_numero);
 
+        iniciarNuevamente();
+    }
 
+    private void iniciarNuevamente() {
         Random rd = new Random();
-        numeroAleatorioPrincipal = rd.nextInt(10);
+        //  numeroAleatorioPrincipal = rd.nextInt(5);
 
 
 
@@ -68,16 +73,15 @@ public class BuscarNumeroActivity extends AppCompatActivity {
                 }
             }
             if(i == 5){
-                initFonts(generados);
-
+                initFonts(generados, generados.get(2));
             }
             System.out.println("Aleatorio: "+aleatorio);
         }
+        initSeleccionEmpty();
 
         initClicks();
-
-
     }
+
 
     private void initSeleccionEmpty() {
 
@@ -100,12 +104,11 @@ public class BuscarNumeroActivity extends AppCompatActivity {
 
         mQuintoR.setBackgroundColor(ContextCompat.getColor(BuscarNumeroActivity.this, R.color.white));
 
-
     }
 
     private void initClicks() {
 
-        mPrimero.setOnClickListener(new View.OnClickListener() {
+        mPrimeroR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 initSeleccionEmpty();
@@ -115,7 +118,7 @@ public class BuscarNumeroActivity extends AppCompatActivity {
 
             }
         });
-        mSegundo.setOnClickListener(new View.OnClickListener() {
+        mSegundoR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 initSeleccionEmpty();
@@ -125,7 +128,7 @@ public class BuscarNumeroActivity extends AppCompatActivity {
 
             }
         });
-        mTercero.setOnClickListener(new View.OnClickListener() {
+        mTerceroR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 initSeleccionEmpty();
@@ -135,7 +138,7 @@ public class BuscarNumeroActivity extends AppCompatActivity {
 
             }
         });
-        mCuarto.setOnClickListener(new View.OnClickListener() {
+        mCuartoR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 initSeleccionEmpty();
@@ -145,7 +148,7 @@ public class BuscarNumeroActivity extends AppCompatActivity {
 
             }
         });
-        mQuinto.setOnClickListener(new View.OnClickListener() {
+        mQuintoR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 initSeleccionEmpty();
@@ -161,14 +164,36 @@ public class BuscarNumeroActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!seleccion){
-                    Toast.makeText(BuscarNumeroActivity.this,"Por favor seleccione una opcción.",Toast.LENGTH_LONG).show();
+                    //Toast.makeText(BuscarNumeroActivity.this,"Por favor seleccione una opcción.",Toast.LENGTH_LONG).show();
+                    showSnackBar("¡Por favor seleccione una opcción valida!");
+                }else{
+                    if(valorSeleccionado == numeroAleatorioPrincipal){
+                        //Toast.makeText(BuscarNumeroActivity.this,"Seleccionó "+valorSeleccionado,Toast.LENGTH_SHORT).show();
+                        showSnackBar("¡Muy bien!");
+                        iniciarNuevamente();
+
+                    }else{
+                        //Toast.makeText(BuscarNumeroActivity.this,"Incorrecto "+valorSeleccionado,Toast.LENGTH_SHORT).show();
+                        showSnackBar("¡Oh no fallaste!");
+                    }
                 }
             }
         });
 
     }
 
-    private void initFonts(List<Integer> generados) {
+    public void showSnackBar(String msg) {
+        Snackbar
+                .make(findViewById(R.id.container), msg, Snackbar.LENGTH_LONG)
+                .show();
+    }
+    private void initFonts(List<Integer> generados, int a) {
+
+
+        numeroAleatorioPrincipal = a;
+
+
+
         String pacificoFuente= "fuentes/BloodLust.ttf";
         this.Pacifico = Typeface.createFromAsset(getAssets(),pacificoFuente);
         mPrimero = findViewById(R.id.primero);
@@ -189,7 +214,7 @@ public class BuscarNumeroActivity extends AppCompatActivity {
         mQuinto.setText(generados.get(4).toString());
 
         encuentra_numero_text = findViewById(R.id.encuentra_numero_text);
-        encuentra_numero_text.setText("Encuentra el número "+numeroAleatorioPrincipal+":");
+        encuentra_numero_text.setText("Encuentra el número "+ this.numeroAleatorioPrincipal +":");
     }
 
 
