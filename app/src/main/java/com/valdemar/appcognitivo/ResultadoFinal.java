@@ -6,6 +6,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.List;
 
 public class ResultadoFinal extends AppCompatActivity {
@@ -15,10 +18,20 @@ public class ResultadoFinal extends AppCompatActivity {
     int buenas = 0;
     int malas = 0;
 
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultado_final);
+
+
+
+        DatabaseReference myRef = database.getReference("message");
+
+
 
         resultado_final = findViewById(R.id.resultado_final);
 
@@ -47,6 +60,12 @@ public class ResultadoFinal extends AppCompatActivity {
                 resultado_final.setText(prefs.getString("prefs_notificacion","")+" Aprobaste "+malas+" de 10");
             }
         }
+
+        Usuario usuario = new Usuario(prefs.getString("prefs_notificacion",""), buenas + " de 10");
+
+        myRef.push().setValue(usuario);
+
+
 
 
     }
