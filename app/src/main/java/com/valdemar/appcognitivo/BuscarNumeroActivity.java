@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,9 @@ public class BuscarNumeroActivity extends AppCompatActivity {
     private TextView mTercero;
     private TextView mCuarto;
     private TextView mQuinto;
+
+
+    private EditText contador;
 
 
     private RelativeLayout mPrimeroR;
@@ -170,7 +174,17 @@ public class BuscarNumeroActivity extends AppCompatActivity {
                     if(valorSeleccionado == numeroAleatorioPrincipal){
                         //Toast.makeText(BuscarNumeroActivity.this,"Seleccionó "+valorSeleccionado,Toast.LENGTH_SHORT).show();
                         showSnackBar("¡Muy bien!");
+                        contador = findViewById(R.id.contador);
+                        int contador_ = Integer.parseInt(contador.getText().toString());
+
                         iniciarNuevamente();
+                        int contador2 = contador_+1;
+                        if(contador2 == 10){
+                            startActivity(new Intent(BuscarNumeroActivity.this, ResultadoFinal.class));
+                        }
+                        contador.setText(contador2+ "");
+
+
 
                     }else{
                         //Toast.makeText(BuscarNumeroActivity.this,"Incorrecto "+valorSeleccionado,Toast.LENGTH_SHORT).show();
