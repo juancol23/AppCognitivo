@@ -78,7 +78,7 @@
                         />
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/circulacion"
+                    android:id="@+id/resultados"
                     android:layout_weight=".5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Contar\nNúmero"
+                        android:text="Reporte\nResultados"
                         android:textSize="24dp"
                         android:gravity="center"
                         android:textColor="@color/black"

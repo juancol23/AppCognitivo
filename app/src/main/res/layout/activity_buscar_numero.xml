@@ -50,7 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:justificationMode="inter_word"
-                    android:text="1"
+                    android:text="0"
                     android:editable="false"
                     android:textSize="40dp"
                     android:layout_gravity="center"

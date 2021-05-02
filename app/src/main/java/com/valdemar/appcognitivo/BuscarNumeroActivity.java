@@ -196,7 +196,7 @@ public class BuscarNumeroActivity extends AppCompatActivity {
 
                     iniciarNuevamente();
                     int contador2 = contador_+1;
-                    if(contador2 > 10){
+                    if(contador2 > 9){
                         prefs.edit().putString("prefs_puntaje", listaCalificacion.toString()).commit();
                         showSnackBar(listaCalificacion.toString());
                          startActivity(new Intent(BuscarNumeroActivity.this, ResultadoFinal.class));

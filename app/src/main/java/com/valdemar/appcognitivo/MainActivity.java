@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private LinearLayout btnBuscadorNumero;
+    private LinearLayout resultados;
+
     private SharedPreferences prefs = null;
     private TextView nombre_principal_seteado;
     private TextView email_principal_seteado;
@@ -35,6 +37,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, BuscarNumeroActivity.class));
+
+            }
+        });
+
+        resultados = findViewById(R.id.btnBuscadorNumero);
+        resultados.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, Resultados.class));
 
             }
         });
