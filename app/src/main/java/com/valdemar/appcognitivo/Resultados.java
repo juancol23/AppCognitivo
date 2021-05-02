@@ -46,8 +46,8 @@ public class Resultados extends AppCompatActivity {
                     @Override
                     protected void populateViewHolder(final CuentosViewHolder viewHolder, Usuario model, final int position) {
                         final String post_key = getRef(position).getKey();
-                        viewHolder.setNombre(model.getNombre());
-                        viewHolder.setNota(model.getNota());
+                        viewHolder.setNombre("Usuario: "+ model.getNombre());
+                        viewHolder.setNota("Resultado: " + model.getNota());
                         viewHolder.setHora(model.getFecha());
 
                         viewHolder.mViewStructure.setOnClickListener(new View.OnClickListener() {
