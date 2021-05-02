@@ -8,6 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Date;
+
 public class CuentosViewHolder extends RecyclerView.ViewHolder{
     public View mViewStructure;
     public TextView nota_resultado;
@@ -30,8 +32,8 @@ public class CuentosViewHolder extends RecyclerView.ViewHolder{
         nombre_resultado.setText(title);
     }
 
-    public void setHora(String hora) {
-        nombre_resultado.setText(hora);
+    public void setHora(Date hora) {
+        fecha_resultado.setText(hora+"");
 
     }
 }

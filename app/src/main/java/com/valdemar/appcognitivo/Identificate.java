@@ -32,7 +32,10 @@ public class Identificate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 hideSoftKeyboard();
-
+                if(nombre.getText().toString().isEmpty()){
+                    showSnackBar("No puede ser vacio");
+                    return;
+                }
                 prefs.edit().putString("prefs_notificacion", nombre.getText().toString()).commit();
                 showSnackBar("¡!"+prefs.getString("prefs_notificacion",""));
 

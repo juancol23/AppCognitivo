@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        resultados = findViewById(R.id.btnBuscadorNumero);
+        resultados = findViewById(R.id.resultados);
         resultados.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

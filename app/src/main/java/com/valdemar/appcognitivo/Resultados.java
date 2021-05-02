@@ -31,7 +31,7 @@ public class Resultados extends AppCompatActivity {
         mRecyclerPrincipal.setHasFixedSize(true);
 
         mRecyclerPrincipal.setLayoutManager(new GridLayoutManager(this,
-                3, LinearLayoutManager.VERTICAL, false));
+                1, LinearLayoutManager.VERTICAL, false));
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("usuarios");
         mDatabase.keepSynced(true);
@@ -48,7 +48,7 @@ public class Resultados extends AppCompatActivity {
                         final String post_key = getRef(position).getKey();
                         viewHolder.setNombre(model.getNombre());
                         viewHolder.setNota(model.getNota());
-                        viewHolder.setHora(model.getNota());
+                        viewHolder.setHora(model.getFecha());
 
                         viewHolder.mViewStructure.setOnClickListener(new View.OnClickListener() {
                             @Override

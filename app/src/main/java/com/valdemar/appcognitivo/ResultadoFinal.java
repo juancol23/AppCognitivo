@@ -29,7 +29,7 @@ public class ResultadoFinal extends AppCompatActivity {
 
 
 
-        DatabaseReference myRef = database.getReference("message");
+        DatabaseReference myRef = database.getReference("usuarios");
 
 
 
