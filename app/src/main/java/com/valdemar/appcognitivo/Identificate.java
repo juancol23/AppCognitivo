@@ -39,7 +39,7 @@ public class Identificate extends AppCompatActivity {
                 prefs.edit().putString("prefs_notificacion", nombre.getText().toString()).commit();
                 showSnackBar("¡!"+prefs.getString("prefs_notificacion",""));
 
-                startActivity(new Intent(Identificate.this, BuscarNumeroActivity.class));
+                startActivity(new Intent(Identificate.this, Menusss.class));
                 finish();
             }
         });
